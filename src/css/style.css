@@ -4,22 +4,22 @@ body {
     font-family: "Lucida Console", Courier, monospace;
 }
 
-#main {
-    background-color: burlywood;
-    background-image: url(http://i.stack.imgur.com/spmUM.gif);
-    height: 100vh;
+#main {   
+    background-image: url('../../img/bgpot.png');
+    height: 1920px;
     object-fit: contain;
+    width: 1080px;
 }
 
 #timer {
-    color: whitesmoke;
-    font-size: 10vw;
+    color: black;
+    font-size: 4.5vw;
     font-weight: bold;
     margin-top: 5vw;
 }
 
 #question {
-    color: whitesmoke;
+    color: black;
     font-size: large;
     font-weight: bold;
     margin-top: 2vw;
@@ -32,42 +32,44 @@ body {
 }
 
 .puzzle-next {
-    border: 1px solid;
-    box-shadow: 5px 5px black;
-    border-radius: 1vw;
+  // background-image: url('../../img/next.png');
+   // border: 1px solid;
+   // box-shadow: 2px 2px black;
+   // border-radius: 0.8vw;
     margin-top: 2vw;
     width: auto;
     height: 6.5vw;
-    border-style: solid;
+   // border-style: solid;
     float: left;
-    border-color: blue;
-    background-color: white;
+   // border-color: blue;
+   // background-color: rgba(255,255,255,255);
     text-align: center;
     font-size: 4.5vw;
-    color: blue;
+  //  color: rgba(255,255,255,255);
     cursor: pointer;
     outline: none;
 }
 
 .puzzle-next:disabled {
-    background-color: grey;
+    background-color: rgba(255,255,255,130);
+   background-image: url('../../img/bgpot.png');
 }
 
 .puzzle-char {
-    border: 1px solid;
-    box-shadow: 5px 5px black;
-    border-radius: .5vw;
+   // border: 1px solid;
+    box-shadow: 2px 2px black;
+    border-radius: 0.8vw;
     margin-left: 0.5vw;
     margin-top: 0.5vw;
-    width: 6.5vw;
-    height: 6.5vw;
-    border-style: solid;
+    width: 5vw;
+    height: 5vw;
+  //  border-style: solid;
     float: left;
-    border-color: blue;
-    background-color: white;
+  //  border-color: blue;
+    background-color: rgb(255,255,255);
     text-align: center;
-    font-size: 4.5vw;
-    color: blue;
+    font-size: 3vw;
+    color: rgb(0,82,156);
     cursor: pointer;
     outline: none;
 }
@@ -76,12 +78,12 @@ body {
     border-width: 0px;
     border-radius: 2vh;
     margin-top: 3vw;
-    background-color: blue;
+    background-color: rgb(0,82,156);
     width: 100vh;
     /* height: 6.5vw; */
     border-style: solid;
     float: left;
-    border-color: goldenrod;
+   // border-color: goldenrod;
     text-align: center;
     font-size: 4.5vw;
     font-weight: bold;
@@ -89,6 +91,7 @@ body {
     text-transform: uppercase;
     letter-spacing: 1vw;
     resize: none;
+    style='background-color: "+bg+";color:"+ cg+";'
 }
 
 #result {

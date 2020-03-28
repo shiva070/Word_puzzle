@@ -83,10 +83,11 @@ var myTimer;
 
 function setTimer() {
     myTimer = setInterval(myClock, 1000);
-    var c = 50;
+    var c = 60;
 
     function myClock() {
-        document.getElementById("timer").innerHTML = --c;
+        alert()
+        document.getElementById("timer").innerHTML = +"00 :"+--c;
         if (c == 0) {
             clearInterval(myTimer);
             enableBtn();

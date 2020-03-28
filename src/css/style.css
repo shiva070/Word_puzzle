@@ -13,7 +13,7 @@ body {
 
 #timer {
     color: whitesmoke;
-    font-size: 5vw;
+    font-size: 10vw;
     font-weight: bold;
     margin-top: 5vw;
 }
@@ -49,11 +49,16 @@ body {
     outline: none;
 }
 
+.puzzle-next:disabled {
+    background-color: grey;
+}
+
 .puzzle-char {
     border: 1px solid;
     box-shadow: 5px 5px black;
-    border-radius: 25%;
+    border-radius: .5vw;
     margin-left: 0.5vw;
+    margin-top: 0.5vw;
     width: 6.5vw;
     height: 6.5vw;
     border-style: solid;
@@ -70,9 +75,10 @@ body {
 #puzzlesolution {
     border-width: 0px;
     border-radius: 2vh;
+    margin-top: 3vw;
     background-color: blue;
     width: 100vh;
-    height: 6.5vw;
+    /* height: 6.5vw; */
     border-style: solid;
     float: left;
     border-color: goldenrod;
@@ -82,6 +88,7 @@ body {
     color: white;
     text-transform: uppercase;
     letter-spacing: 1vw;
+    resize: none;
 }
 
 #result {

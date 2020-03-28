@@ -2,6 +2,8 @@ var currentscrumbledword = "";
 var currentans = "";
 var currentindex = "";
 var wordDictionay = [];
+var countDownDate = 50;
+var timer = "";
 // var words = ["wonderful", "unmatched", "delivery", "awesome", "delightfull", "cylinder", "painful", "alternate"];
 
 wordDictionay = [
@@ -52,6 +54,11 @@ function onload() {
 
 function LoadGui() {
     clearBox();
+    clearInterval(myTimer);
+    disableBtn();
+
+    document.getElementById("answer").innerHTML = "";
+    document.getElementById("answer").setAttribute("visibilty", "hidden")
     currentindex = randomKeyFromDict(Object.keys(wordDictionay));
     currentscrumbledword = wordDictionay[currentindex].key;
     currentans = wordDictionay[currentindex].value;
@@ -60,8 +67,41 @@ function LoadGui() {
     DrawWords(currentscrumbledword, count);
     var textbox = document.getElementById("puzzlesolution");
     textbox.value = "_".repeat(count);
-    textbox.setAttribute('size', textbox.value.length);
+    if (count > 12) {
+        textbox.setAttribute('rows', 2);
+        textbox.setAttribute('cols', count / 2);
+    } else {
+        textbox.setAttribute('rows', 1);
+        textbox.setAttribute('cols', count);
+    }
+    countDownDate = 50;
+    display = document.querySelector('#timer');
+    setTimer();
 }
+
+var myTimer;
+
+function setTimer() {
+    myTimer = setInterval(myClock, 1000);
+    var c = 50;
+
+    function myClock() {
+        document.getElementById("timer").innerHTML = --c;
+        if (c == 0) {
+            clearInterval(myTimer);
+            enableBtn();
+        }
+    }
+}
+
+function disableBtn() {
+    document.getElementById("next-btn").disabled = true;
+}
+
+function enableBtn() {
+    document.getElementById("next-btn").disabled = false;
+}
+
 
 function randomKeyFromDict(items) {
     return items[Math.floor(Math.random() * items.length)];
@@ -180,8 +220,13 @@ function showAlert(status, msg, type, thumb) {
 }
 
 function changecolorAccordingtoResult(colorcode) {
+    clearInterval(myTimer);
+    enableBtn();
     if (colorcode == 1)
         document.getElementById("puzzlesolution").style.backgroundColor = 'green';
-    else
+    else {
         document.getElementById("puzzlesolution").style.backgroundColor = 'red';
+        document.getElementById("answer").innerHTML = currentans;
+        document.getElementById("answer").setAttribute("visibilty", "visible")
+    }
 }

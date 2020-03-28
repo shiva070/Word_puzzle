@@ -10,6 +10,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <script src="https://cdn.rawgit.com/robbmj/simple-js-countdown-timer/master/countdowntimer.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
@@ -41,10 +42,10 @@
                     <p id="answer">answer</p>
                 </center>
                 <div class="input-group mb-3 input-group-lg" id="puzzleword" style="padding-top: 5;">
-                    <input type="text" id="puzzlesolution" value="" disabled></input>
+                    <textarea id="puzzlesolution" value="" disabled></textarea>
                 </div>
                 <div class="input-group mb-3 input-group-lg" id="puzzleword" style="padding-top: 5;">
-                    <input type="button" value="Next" class="puzzle-next">
+                    <input type="button" id="next-btn" value="Next" class="puzzle-next" onclick="LoadGui();">
                 </div>
             </div>
             <div class="col-sm-1"></div>

@@ -51,8 +51,7 @@ body {
 }
 
 .puzzle-next:disabled {
-    background-color: rgba(255,255,255,130);
-   background-image: url('../../img/bgpot.png');
+    background-color: rgba(255,255,255,130);   
 }
 
 .puzzle-char {
@@ -119,6 +118,21 @@ body {
     visibility: visible;
     -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
     animation: fadein 0.5s, fadeout 0.5s 2.5s;
+}
+#logo {
+    width: 9vw;
+    height: 8vw;
+    float: right;
+  
+}
+#covidimg {
+    width: 9vw;
+    height: 8vw;  
+    margin-top: 10vw;
+}
+#startbtn {
+    width: 9vw;
+    height: 8vw;  
 }
 
 @-webkit-keyframes fadein {

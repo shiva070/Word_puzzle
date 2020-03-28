@@ -11,43 +11,77 @@ body {
     object-fit: contain;
 }
 
+#timer {
+    color: whitesmoke;
+    font-size: 5vw;
+    font-weight: bold;
+    margin-top: 5vw;
+}
+
+#question {
+    color: whitesmoke;
+    font-size: large;
+    font-weight: bold;
+    margin-top: 2vw;
+}
+
 #puzzleword {
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
+.puzzle-next {
+    border: 1px solid;
+    box-shadow: 5px 5px black;
+    border-radius: 1vw;
+    margin-top: 2vw;
+    width: auto;
+    height: 6.5vw;
+    border-style: solid;
+    float: left;
+    border-color: blue;
+    background-color: white;
+    text-align: center;
+    font-size: 4.5vw;
+    color: blue;
+    cursor: pointer;
+    outline: none;
+}
+
 .puzzle-char {
-    border-width: 4px;
+    border: 1px solid;
+    box-shadow: 5px 5px black;
     border-radius: 25%;
     margin-left: 0.5vw;
     width: 6.5vw;
     height: 6.5vw;
     border-style: solid;
     float: left;
-    /* border-color: white;
-    background-color: chartreuse; */
+    border-color: blue;
+    background-color: white;
     text-align: center;
     font-size: 4.5vw;
-    color: black;
+    color: blue;
     cursor: pointer;
     outline: none;
 }
 
 #puzzlesolution {
-    border-width: 4px;
-    border-radius: 10vh;
+    border-width: 0px;
+    border-radius: 2vh;
+    background-color: blue;
     width: 100vh;
     height: 6.5vw;
     border-style: solid;
     float: left;
     border-color: goldenrod;
-    background-color: white;
     text-align: center;
     font-size: 4.5vw;
     font-weight: bold;
-    color: black;
+    color: white;
     text-transform: uppercase;
+    letter-spacing: 1vw;
 }
 
 #result {
@@ -58,7 +92,7 @@ body {
 #snackbar {
     visibility: hidden;
     min-width: 250px;
-    margin-left: -125px;
+    margin-left: -100px;
     background-color: #333;
     color: #fff;
     text-align: center;

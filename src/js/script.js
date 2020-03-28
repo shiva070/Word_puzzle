@@ -2,8 +2,21 @@ var currentscrumbledword = "";
 var currentans = "";
 var currentindex = "";
 var wordDictionay = [];
-var words = ["wonderful", "unmatched"];
-// "delivery","awesome","delightfull","cylinder","painful","alternate"];
+// var words = ["wonderful", "unmatched", "delivery", "awesome", "delightfull", "cylinder", "painful", "alternate"];
+
+wordDictionay = [
+    { question: " What should you avoid with someone who is sick?", key: shuffle("CLOSECONTACT"), value: "CLOSECONTACT" },
+    { question: "What should you wash your hands with for atleast 20 seconds, when visibly dirty?", key: shuffle("SOAP"), value: "SOAP" },
+    { question: "What should you do, upon return from a COVID-19 affected area?", key: shuffle("SELFQUARANTINE"), value: "SELFQUARANTINE" },
+    { question: "This is one of the symptoms of COVID-19", key: shuffle("SORETHROAT"), value: "SORETHROAT" },
+    { question: "What cannot prevent Coronavirus?", key: shuffle("ANTIBIOTICS"), value: "ANTIBIOTICS" },
+    { question: "What is the minimum distance one must maintain from someone with COVID-19 symptoms?", key: shuffle("THREEFEET"), value: "THREEFEET" },
+    { question: "What nature of cough is a symptom of COVID-19?", key: shuffle("DRY"), value: "DRY" },
+    { question: "For how many days should one quarantine themselves, in case of symptoms or on return from COVID-19 affected area?", key: shuffle("FOURTEEN"), value: "FOURTEEN" },
+    { question: "What should you not do to a mask when using it?", key: shuffle("TOUCH"), value: "TOUCH" },
+    { question: "What is a great practice to break the chain of COVID-19?", key: shuffle("SOCIALDISTANCING"), value: "SOCIALDISTANCING" }
+]
+
 function getRandomInt(n) {
     return Math.floor(Math.random() * n);
 }
@@ -25,14 +38,15 @@ function shuffle(s) {
 }
 
 function onload() {
-    words.forEach(function(word) {
-        var w = word.toUpperCase();
-        wordDictionay.push({
-            key: shuffle(w),
-            value: w
-        });
+    // words.forEach(function(word) {
+    //     var w = word.toUpperCase();
+    //     wordDictionay.push({
+    //         question: "",
+    //         key: shuffle(w),
+    //         value: w
+    //     });
 
-    });
+    // });
     LoadGui();
 }
 
@@ -41,18 +55,22 @@ function LoadGui() {
     currentindex = randomKeyFromDict(Object.keys(wordDictionay));
     currentscrumbledword = wordDictionay[currentindex].key;
     currentans = wordDictionay[currentindex].value;
-    DrawWords(currentscrumbledword);
+    var count = Object(currentscrumbledword).length;
+    document.getElementById("question").innerHTML = wordDictionay[currentindex].question;
+    DrawWords(currentscrumbledword, count);
+    var textbox = document.getElementById("puzzlesolution");
+    textbox.value = "_".repeat(count);
+    textbox.setAttribute('size', textbox.value.length);
 }
 
 function randomKeyFromDict(items) {
     return items[Math.floor(Math.random() * items.length)];
 }
 
-function DrawWords(word) {
-    var count = Object(word).length;
+function DrawWords(word, wordlength) {
     var input = 0;
     word.split('').forEach(function(c) {
-        drawLabel(c, count, input);
+        drawLabel(c, wordlength, input);
         input++;
     });
 }
@@ -63,14 +81,10 @@ function clearBox() {
 }
 
 function drawLabel(cha, count, input) {
-    var bg = randDarkColor();
-    var cg = getRandomLightColor();
     var size = count - 3;
     var font = size - 2;
-    // document.getElementById("#puzzleword").innerHTML = " ";
-    $("#puzzleword").append("<input type='button' class='puzzle-char' id='" + cha + input + "' onmousedown= 'charOnClick(this.value,this.id);' style='background-color: " + bg + ";color:" + cg + " ;border-color: " + cg + ";' value ='" + cha + "'></input>");
-    // $("#myAlert").css('visibilty','initial');  
-    // width:"+size+"vw;height:"+size+"vw;font-size:"+font+"vw;
+    // document.getElementById("puzzleword").innerHTML = " ";
+    $("#puzzleword").append("<input type='button' class='puzzle-char' id='" + cha + input + "' onmousedown= 'charOnClick(this.value,this.id);' value ='" + cha + "'></input>");
 }
 
 function randDarkColor() {
@@ -99,34 +113,51 @@ function getRandomLightColor() {
 }
 
 function charOnClick(chrs, id) {
-    var text = document.getElementById("puzzlesolution").value;
-    document.getElementById("puzzlesolution").value = text + chrs;
-
-    document.getElementById(id).value = "";
+    // var text = document.getElementById("puzzlesolution").value;
+    document.getElementById("puzzlesolution").value = replaceChar(chrs);
+    document.getElementById(id).setAttribute("type", "hidden");
     Logic();
+}
+
+function replaceChar(replaceChar) {
+    var origString = document.getElementById("puzzlesolution").value;
+    var index = origString.indexOf("_");
+    let firstPart = origString.substr(0, index);
+
+    let lastPart = origString.substr(index + 1);
+
+    let newString =
+        firstPart + replaceChar + lastPart;
+
+    return newString;
 }
 
 function Logic() {
     var input = document.getElementById("puzzlesolution").value;
 
+    if (input.includes("_")) {
+        return;
+    }
     if (input.length == currentans.length) {
         if (wordDictionay[currentindex].value == input) {
             Showmessage("Voila!!! Correct Answer Loading New Quiz.")
+            changecolorAccordingtoResult(1);
             wordDictionay.pop(currentscrumbledword);
-            LoadGui();
+            // LoadGui();
         } else {
             Showmessage("Oops! Wrong Answer Please Try Again")
             wordDictionay.push({
                 key: currentscrumbledword,
                 value: currentans
             });
-            document.getElementById("puzzlesolution").setAttribute("type", "hidden");
-            document.getElementById("puzzleword").innerHTML = "";
-            showAlert("Oops!!", "You Lost Please Click on Button to Start", 'Danger', "down");
+            // document.getElementById("puzzlesolution").setAttribute("type", "hidden");
+            // document.getElementById("puzzleword").innerHTML = "";
+            changecolorAccordingtoResult(0);
+            // showAlert("Oops!!", "You Lost Please Click on Button to Start", 'Danger', "down");
         }
     }
     if (Object(wordDictionay).length == 0) {
-        showAlert("Oops!!", "You Win Want to Play Again Pless button", 'success', "up");
+        // showAlert("Oops!!", "You Win Want to Play Again Pless button", 'success', "up");
     }
 }
 
@@ -146,4 +177,11 @@ function showAlert(status, msg, type, thumb) {
     document.getElementById("myAlert").innerHTML = "";
     $("#myAlert").append("<div class='jumbotron jumbotron-fluid bg-" + type + "'>  <div class='container'><h1><i class='fas fa-thumbs-" + thumb + "'></i> " + status + "</h1><p style='padding-left:9%;'>" + msg + "</p></div></div>");
     $("#myAlert").css('visibilty', 'visible');
+}
+
+function changecolorAccordingtoResult(colorcode) {
+    if (colorcode == 1)
+        document.getElementById("puzzlesolution").style.backgroundColor = 'green';
+    else
+        document.getElementById("puzzlesolution").style.backgroundColor = 'red';
 }

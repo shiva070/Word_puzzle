@@ -86,8 +86,8 @@ function setTimer() {
     var c = 60;
 
     function myClock() {
-        alert()
-        document.getElementById("timer").innerHTML = +"00 :"+--c;
+       
+        document.getElementById("timer").innerHTML = "00:"+ (--c);
         if (c == 0) {
             clearInterval(myTimer);
             enableBtn();
